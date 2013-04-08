@@ -81,10 +81,10 @@ def findWorkspace():
 
     w = (right-left)
     h = (bottom-top)
-    i.drawRectangle(left,top,w,h,alpha=15,width=-1,color=Color.BLACK)
+    i.drawRectangle(left,top,w,h,alpha=45,width=-1,color=Color.BLACK)
 
-    while 1:
-        i.show() #uncomment to see inner process of findWorkspace()
+    '''while 1:
+        i.show()''' #uncomment to see inner process of findWorkspace()
 
     return [left,top,w,h]
 
@@ -93,7 +93,14 @@ ws = findWorkspace() #workspace
 while (1):
     i = cam.getImage()
     i = i.crop(ws[0],ws[1],ws[2],ws[3]) #only use the workspace
-    
+    layer = DrawingLayer(i.size())
+    i.addDrawingLayer(layer)
+    lines = i.binarize().findLines(cannyth1=10,cannyth2=150)
+    print lines
+    if lines:
+        for line in lines:
+            #line.draw(layer=layer)
+            i.drawLine(line.points[0],line.points[1])
 
     i.show()
 
