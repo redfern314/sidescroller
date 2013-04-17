@@ -1,4 +1,5 @@
 from SimpleCV import *
+import random
 
 def colorDistance(color1,color2):
     return ((color2[0]-color1[0])**2+(color2[1]-color1[1])**2+(color2[2]-color1[2])**2)
@@ -90,18 +91,23 @@ def findWorkspace():
 
 cam = Camera(1)
 ws = findWorkspace() #workspace
-while (1):
+th1 = 0
+th2 = 0
+count = 0
+while(1):
+    '''count += 1
+    if count > 10:
+        count = 0
+        th1 = int(random.random()*150)
+        th2 = int(random.random()*150)
+        print th1,th2''' #changing canny thresholds randomly
     i = cam.getImage()
     i = i.crop(ws[0],ws[1],ws[2],ws[3]) #only use the workspace
-    layer = DrawingLayer(i.size())
-    i.addDrawingLayer(layer)
-    lines = i.binarize().findLines(cannyth1=10,cannyth2=150)
-    print lines
-    if lines:
-        for line in lines:
-            #line.draw(layer=layer)
-            i.drawLine(line.points[0],line.points[1])
 
-    i.show()
+    # attempt to isolate red lines
+    #colortest = i.hueDistance(color=Color.RED,minsaturation=50,minvalue=20).edges(60,100).binarize()
+
+    edgetest = i.hueDistance(color=Color.RED).edges(th1,th2).binarize()
+    edgetest.show()
 
 
