@@ -107,7 +107,7 @@ while(1):
     # attempt to isolate red lines
     #colortest = i.hueDistance(color=Color.RED,minsaturation=50,minvalue=20).edges(60,100).binarize()
 
-    edgetest = i.hueDistance(color=Color.RED).edges(th1,th2).binarize()
+    edgetest = i.edges(20,40).binarize()
     edgetest.show()
 
 
