@@ -1,4 +1,2 @@
-sidescroller
-============
-
-PoE Spring '13 Project
+poe-website
+POE Spring 2013 - Team Sidescroller website
