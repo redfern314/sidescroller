@@ -37,9 +37,9 @@
             <li class="dropdown active">
               <a class="dropdown-toggle" id="drop4" role="button" data-toggle="dropdown" href="#">Subsystems <b class="caret"></b></a>
               <ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="drop4">
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="subsystems.html#mech">Mechanical</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="subsystems.html#elec">Electrical</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="subsystems.html#soft">Software</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="mechanical.html">Mechanical</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="electrical.html">Electrical</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="software.html">Software</a></li>
               </ul>
             </li>
             <li><a href="budget.html">Budget</a></li>
@@ -50,7 +50,7 @@
 
         <hr>
 
-        <h1 id="mech">Mechanical</h1>
+        <h1>Mechanical</h1>
         <div class="row-fluid marketing">
           <div class="span8">
             <h4>System Overview</h4>
@@ -61,10 +61,14 @@
             We found in preferable to divide the entire mechanical system into smaller blocks. There is interplay between the systems, though. The motors which actuate the transmission and game character are mounted to the frame. The timing belt on which the game character moves travels near the rollers. Therefore, we began integration of subsystems around the frame in our earliest CAD iterations. This process of division helped us isolate challenging portions of the design which required more time and energy while still making rapid progress on the system as a whole. Throughout the design process, we strove to produce a system which was robust, user friendly and cost efficient.</p>
           </div>
           <div class="span4">
+            <br><br><br>
+            <p>[img]</p>
           </div>
         </div>
         <div class="row-fluid marketing">
           <div class="span4">
+            <br><br><br>
+            <p>[img]</p>
           </div>
           <div class="span8">
             <h4>Frame</h4>
@@ -79,47 +83,21 @@
             <p>The transmission system we use consists of a pulley on a brush motor and 2 timing belt pulleys mounted underneath two sets of dog tooth gears. The dog tooth gears consist of a series of triangular ridges on the circular face of the gear. When the gears are pushed together by an arm mounted on a servo, the teeth mesh and circular motion translates to the other gear. This allows us to selectively engage the spindle by changing which set of gears are engaged and which set are freely rotating. Therefore, the timing belt always runs in the same direction. This makes operation simpler both mechanically and from a coding perspective.</p>
           </div>
           <div class="span4">
+            <br><br><br>
+            <p>[img]</p>
           </div>
         </div>
         <div class="row-fluid marketing">
           <div class="span4">
+            <br><br><br>
+            <p>[img]</p>
           </div>
           <div class="span8">
             <h4>Game Character</h4>
             <p>In side- scroller games, it is necessary for the game character (in our case, a snail) to move up and down in response to player input. Therefore we needed to actuate the snail. This actuation system needed to be discreet so it would not distract the player. Therefore, we decided on an 1/8 inch timing belt being driven by a stepper motor with a timing belt pulley attached to its shaft. This allows for precise positioning control. We located the motor below the plane of the game environment and enclosed it inside the frame. Therefore, it is not a distraction for the player. At the top of the timing belt, we have a roller. This is because only an idler is required as no actuation is occurring at this point. Rollers are far less expensive than pulleys. Further, a roller can be much smaller than a pulley and is therefore less distracting to the player.</p>
           </div>
         </div>
-        <hr>
-
-        <h1 id="elec">Electrical</h1>
-        <div class="row-fluid marketing">
-          <div class="span12">
-            <h4>Subheading</h4>
-            <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
-
-            <h4>Subheading</h4>
-            <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
-
-            <h4>Subheading</h4>
-            <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
-          </div>
-        </div>
-        <hr>
-
-        <h1 id="soft">Software</h1>
-        <div class="row-fluid marketing">
-          <div class="span12">
-            <h4>Subheading</h4>
-            <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
-
-            <h4>Subheading</h4>
-            <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
-
-            <h4>Subheading</h4>
-            <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
-          </div>
-          
-        </div>
+        
         <hr>
 
         <div class="footer">
