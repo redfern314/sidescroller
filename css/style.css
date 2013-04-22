@@ -4,6 +4,10 @@
     text-align: center
 }
 
+hr {
+    border-color: #aaaaaa;
+}
+
 .carousel-inner {
     min-height: 600px;
 }
@@ -17,8 +21,7 @@ body {
 }
 
 .container-narrow {
-    background-color: #EEEDFF;
-    opacity: .7;
+    background-color: rgba(238,237,255,.7);
 }
 
 body {
