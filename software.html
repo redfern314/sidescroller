@@ -55,16 +55,44 @@
         <h1>Software</h1>
         <div class="row-fluid marketing">
           <div class="span12">
-            <h4>Computer Vision</h4>
-            <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
-
-            <h4>Subheading</h4>
-            <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
-
-            <h4>Subheading</h4>
-            <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+            <h2>Computer Vision</h2>
+            <p>One of our objectives was to be able to interpret maps dynamically. That way, rather than having to program in one hard-coded map, the user can just draw a map themselves.</p>
+            <p>To this end, we decided to use a webcam and SimpleCV (a Python wrapper around the OpenCV library for C) to detect the contours drawn on the roll of paper.</p>
+            <h4>Calibration</h4>
+            <p>Our software has two modes: calibration and detection. In calibration, it looks for 4 pink squares and uses those as the bounding box for the map (so that during detection, the image size is as small as possible to facilitate speed and eliminate noise). SimpleCV's findBlobs() and isSquare methods() worked well for this step.</p>
+            <div class="row-fluid">
+              <div class="span4 center">
+                <img src="img/">
+                <p>Raw image</p>
+              </div>
+              <div class="span4 center">
+                <img src="img/">
+                <p>Squares found</p>
+              </div>
+              <div class="span4 center">
+                <img src="img/">
+                <p>Calibrated image</p>
+              </div>
+            </div>
+            <h4>Detection</h4>
+            <p>During detection, the software uses Canny threshold detection (via SimpleCV's edges() method)to find the edges in the image, and produces a matrix of points based on the result. These points define boundaries that the character cannot travel through, and are passed on to the game engine, so that it can determine if the character has lost or not.</p>
+            <div class="row-fluid">
+              <div class="span6 center">
+                <img src="img/">
+                <p>Initial image</p>
+              </div>
+              <div class="span6 center">
+                <img src="img/">
+                <p>Edges detected</p>
+              </div>
+            </div>
           </div>
-          
+        </div>
+        <div class="row-fluid marketing">
+          <div class="span12">
+            <h2>Game Engine</h2>
+            <p>Chloe's overview will go here once I get it.</p>
+          </div>
         </div>
         <hr>
 

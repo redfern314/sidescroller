@@ -53,14 +53,30 @@
         <h1>Electrical</h1>
         <div class="row-fluid marketing">
           <div class="span12">
-            <h4>Subheading</h4>
-            <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+            <h4>Overview</h4>
 
-            <h4>Subheading</h4>
-            <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
+            <p>The electrical subsystem consists of 2 over-arching parts.  The first is the power circuitry for our large 12V ~2Amp DC motor.  The second is the stepper motor control circuitry.  Both are powered from the 12V rail of a 12V/5V wall power supply.  This power supply also directly provides power for the raspberryPi from the 5V rail.</p>
+          </div>
+        </div>
+        <div class="row-fluid marketing">
+          <div class="offset1 span10">
+            <img src="img/circuit_overview.jpg">
+            <h5 style="text-align:center">The connections within the electrical subsystem</h5>
+          </div>
+        </div>
+        <div class="row-fluid marketing">
+          <div class="span12">
+            <h4>Brushed DC Motor</h4>
 
-            <h4>Subheading</h4>
-            <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+            <p>In order to control the DC motor we use two output pins from the raspberryPi which output unbuffered digital 0V or 3.3V.  The first pin outputs a PWM signal used to control velocity of the motor while the second pin outputs 0V for forward and 3.3V for backward.  Each of these outputs runs through a sub-circuit to amplify, smooth and buffer the signals.  Ultimately the output of the second pin's circuit is used to control a DPDT relay which takes the voltage from the output of the first pin's circuit and switches the direction on the motor accordingly.</p>
+
+            <p>The first step for both pins is buffering, which is done simply with an op-amp.  For the velocity pin, the pwm signal is smoothed with an RC circuit.  The time constant of the RC circuit is approximately 0.1 seconds.  Finally, the signal is amplified via a power PMOS transistor in feedback.  The resulting voltage is fed into 2 opposite "corners" of the relay, where the other two "corners" are wired to ground.  The buffered and amplified signal from the direction pin controls the relay, essentially forming an H-bridge.</p>
+          </div>
+        </div>
+        <div class="row-fluid marketing">
+          <div class="span12">
+            <img src="img/circuit_schematic.png">
+            <h5 style="text-align:center">A circuit diagram for the power control circuit</h5>
           </div>
         </div>
 
