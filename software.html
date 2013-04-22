@@ -77,11 +77,11 @@
             <h4>Detection</h4>
             <p>During detection, the software uses Canny threshold detection (via SimpleCV's edges() method)to find the edges in the image, and produces a matrix of points based on the result. These points define boundaries that the character cannot travel through, and are passed on to the game engine, so that it can determine if the character has lost or not.</p>
             <div class="row-fluid">
-              <div class="span6 center">
+              <div class="span4 center offset2">
                 <img src="img/cv4.png">
                 <p>Cropped image</p>
               </div>
-              <div class="span6 center">
+              <div class="span4 center">
                 <img src="img/cv5.png">
                 <p>Edges detected</p>
               </div>
@@ -90,13 +90,17 @@
           </div>
         </div>
         <div class="row-fluid marketing">
-          <div class="span12">
+          <div class="span8">
             <h2>Game Engine</h2>
             <p>The game engine subsystem is writen in Python using the the TKInter graphics library.  We chose to use Python and TKInter to facilitate rapid iteration and incremental development.  The game engine defines the environment for the game and facilitates user input.</p>
 
             <p>To make sure we had a demoable prototype and to facilitate testing, the game engine was designed to facilitate both software and mechanical implementations.  For each major component, there exists an abstract class defining methods relevant for both implementations, and both a mechanical and software child class.  Mechanical and software game-player take these objects to manage the system.</p>
 
             <p>Right now, the mechanical game player is largely unimplemented due to pending integration, but the software implementation is complete.</p>
+          </div>
+          <div class="span4">
+            <br><br><br>
+            <img src="img/gameimage.png">
           </div>
         </div>
         <hr>
