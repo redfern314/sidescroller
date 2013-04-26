@@ -1,13 +1,19 @@
 from SimpleCV import *
 import random
+import numpy
 
 def colorDistance(color1,color2):
     return ((color2[0]-color1[0])**2+(color2[1]-color1[1])**2+(color2[2]-color1[2])**2)
 
-def initialize():
+def initialize(source=0):
     count = 0
     while (1):
-        i = cam.getImage()
+        if source:
+            #testing mode
+            i = Image("cv1.png")
+        else:
+            cam = Camera(1)
+            i = cam.getImage()
         layer = DrawingLayer(i.size())
         i.addDrawingLayer(layer)
         inverted = i.hueDistance(color=Color.WHITE,minsaturation=75,minvalue=100).binarize()
@@ -20,7 +26,7 @@ def initialize():
                     if area>1000:
                         squares.append(blob)
                         blob.draw(color=Color.GREEN,width=-1,layer=layer)
-        i.show()
+        #i.show()
 
         # wait until we see 4 squares for 3 frames in a row
         if len(squares) == 4:
@@ -89,12 +95,12 @@ def initialize():
 
     return [left,top,w,h]
 
-# ws: A list of 4 points that define a rectangular workspace
+# ws: A list of 4 numbers (2 points) that define a rectangular workspace
 # source: 0 reads from the camera (default), 1 reads from a sample image
 def getReading(ws,source=0):
     if source:
         #testing mode
-        i = Image("sample.png")
+        i = Image("cv4.png")
     else:
         cam = Camera(1)
         i = cam.getImage()
@@ -102,12 +108,15 @@ def getReading(ws,source=0):
     i = i.crop(ws[0],ws[1],ws[2],ws[3]) #only use the workspace
 
     edgetest = i.edges(20,40).binarize()
-    matrix = edgetest.getNumpy()
+    matrix = edgetest.getNumpy()[:,:,0]
+
     for item in numpy.nditer(matrix,op_flags=['readwrite']):
-        if item = (0,0,0):
-            item[...] = 0
-        else:
+        if item == 0:
             item[...] = 1
-    return edgetest.getNumpy()
+        else:
+            item[...] = 0
+    return matrix
 
-
+a = initialize(1)
+b = getReading(a,1)
+import pdb; pdb.set_trace()
