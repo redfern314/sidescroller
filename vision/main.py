@@ -4,7 +4,7 @@ import random
 def colorDistance(color1,color2):
     return ((color2[0]-color1[0])**2+(color2[1]-color1[1])**2+(color2[2]-color1[2])**2)
 
-def findWorkspace():
+def initialize():
     count = 0
     while (1):
         i = cam.getImage()
@@ -89,25 +89,25 @@ def findWorkspace():
 
     return [left,top,w,h]
 
-cam = Camera(1)
-ws = findWorkspace() #workspace
-th1 = 0
-th2 = 0
-count = 0
-while(1):
-    '''count += 1
-    if count > 10:
-        count = 0
-        th1 = int(random.random()*150)
-        th2 = int(random.random()*150)
-        print th1,th2''' #changing canny thresholds randomly
-    i = cam.getImage()
+# ws: A list of 4 points that define a rectangular workspace
+# source: 0 reads from the camera (default), 1 reads from a sample image
+def getReading(ws,source=0):
+    if source:
+        #testing mode
+        i = Image("sample.png")
+    else:
+        cam = Camera(1)
+        i = cam.getImage()
+
     i = i.crop(ws[0],ws[1],ws[2],ws[3]) #only use the workspace
 
-    # attempt to isolate red lines
-    #colortest = i.hueDistance(color=Color.RED,minsaturation=50,minvalue=20).edges(60,100).binarize()
-
     edgetest = i.edges(20,40).binarize()
-    edgetest.show()
+    matrix = edgetest.getNumpy()
+    for item in numpy.nditer(matrix,op_flags=['readwrite']):
+        if item = (0,0,0):
+            item[...] = 0
+        else:
+            item[...] = 1
+    return edgetest.getNumpy()
 
 
