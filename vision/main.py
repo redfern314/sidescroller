@@ -1,10 +1,12 @@
 from SimpleCV import *
-import random
 import numpy
 
 def colorDistance(color1,color2):
     return ((color2[0]-color1[0])**2+(color2[1]-color1[1])**2+(color2[2]-color1[2])**2)
 
+# calibrates the workspace by looking for 4 squares on the screen
+# returns a list of 4 numerical bounds for the workspace
+# this should be called when starting or resetting the program 
 def initialize(source=0):
     count = 0
     while (1):
@@ -116,7 +118,3 @@ def getReading(ws,source=0):
         else:
             item[...] = 0
     return matrix
-
-a = initialize(1)
-b = getReading(a,1)
-import pdb; pdb.set_trace()
