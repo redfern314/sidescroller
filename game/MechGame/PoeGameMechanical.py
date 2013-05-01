@@ -81,7 +81,9 @@ class MechanicalSnail(Snail):
     def fall(self):
         self.location = (self.location[0],self.location[1]+self.fallRate/10)
 
-    def lift(self, lift = self.liftRate):
+    def lift(self, lift = None):
+        if not lift:
+            lift = self.liftRate
         self.location = (self.location[0],self.location[1]+self.liftRate/10)
 
 
