@@ -10,7 +10,7 @@ for x in step:
 button = [11,12]
 GPIO.setup(button[0],GPIO.OUT)
 GPIO.output(button[0],1)
-GPIO.setup(button[1],GPIO.IN)
+GPIO.setup(button[1],GPIO.IN,pull_up_down=GPIO.PUD_DOWN)
 
 def setpins(out,x):
 	for pin in range(len(out)):
@@ -65,12 +65,15 @@ for a in range(100):
 
 setpins(step,[])
 
+prev = 0
 for i in range(2000):
 	input = GPIO.input(button[1])
 	if input:
+		prev = 1
+	if input and prev:
 		fwd()
 	else:
-		setpins(step,[])
-		time.sleep(.1)
+		prev = 0
+		bkwd()
 
 setpins(step,[])
