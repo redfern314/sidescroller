@@ -14,6 +14,17 @@ GPIO.setup(button[0],GPIO.OUT)
 GPIO.output(button[0],1)
 GPIO.setup(button[1],GPIO.IN,pull_up_down=GPIO.PUD_DOWN)
 
+dir = [15,16]
+move = 18
+
+for x in dir:
+    GPIO.setup(x, GPIO.OUT)
+    GPIO.output(x,0)
+
+GPIO.setup(move,GPIO.OUT)
+pwm = GPIO.PWM(move, 20)
+pwm.start(0)
+
 def setpins(out,x):
 	for pin in range(len(out)):
 		if not pin in x:
@@ -59,6 +70,8 @@ def up():
 	setpins(step,[3])
         time.sleep(tcons)
 
+
+
 setpins(step,[])
 
 while (position>=0 and position<=630):
@@ -83,4 +96,3 @@ while position>0:
 
 #deactivate pins to save the power supply and h-bridge
 setpins(step,[])
-
