@@ -119,10 +119,3 @@ def getReading(ws,source=0):
     
     matrix = edgetest.invert().getNumpy()[:,:,0]
     return matrix
-    
-
-
-ws = initialize()
-for i in range(5):
-    img=getReading(ws,1)
-    img.save(filehandle_or_filename=str(i))
