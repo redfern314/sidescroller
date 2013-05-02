@@ -6,12 +6,13 @@ props = {"width":480,"height":360}
 def colorDistance(color1,color2):
     return ((color2[0]-color1[0])**2+(color2[1]-color1[1])**2+(color2[2]-color1[2])**2)
 
+cam = Camera(0,prop_set=props)
+
 # calibrates the workspace by looking for 4 squares on the screen
 # returns a list of 4 numerical bounds for the workspace
 # this should be called when starting or resetting the program 
 def initialize(source=0):
     count = 0
-    cam = Camera(0,prop_set=props)
     while (1):
         if source:
             #testing mode
@@ -110,12 +111,12 @@ def getReading(ws,source=0):
         i = Image("cv4.png")
         #i = i.scale(0.5)
     else:
-        cam = Camera(0,prop_set=props)
         i = cam.getImage()
 
     i = i.crop(ws[0],ws[1],ws[2],ws[3]) #only use the workspace
     #i = i.scale(.5)
     edgetest = i.edges(20,40).binarize()
-    
+    #edgetest.show()
     matrix = edgetest.invert().getNumpy()[:,:,0]
     return matrix
+    
