@@ -2,6 +2,8 @@ import RPi.GPIO as GPIO
 import time
 GPIO.setmode(GPIO.BOARD)
 
+position = 0
+
 step = [3,5,8,7]
 for x in step:
 	GPIO.setup(x, GPIO.OUT)
@@ -19,9 +21,9 @@ def setpins(out,x):
 		else:
 			GPIO.output(out[pin],1)
 
-tcons = .001
+tcons = .002
 
-def fwd():
+def down():
 	setpins(step,[0,3])  
         time.sleep(tcons)
 	setpins(step,[0])  
@@ -39,7 +41,7 @@ def fwd():
 	setpins(step,[3])
         time.sleep(tcons)	
 
-def bkwd():
+def up():
 	setpins(step,[1,3])
         time.sleep(tcons)
 	setpins(step,[1])
@@ -57,23 +59,28 @@ def bkwd():
 	setpins(step,[3])
         time.sleep(tcons)
 
-'''for a in range(100):
-	fwd()
-
-for a in range(100):
-	bkwd()'''
-
 setpins(step,[])
 
-prev = 0
-for i in range(2000):
+while (position>=0 and position<=630):
 	input = GPIO.input(button[1])
 	if input:
-		prev = 1
-	if input and prev:
-		fwd()
+		up()
+		position -= 1
+                print 'up'
 	else:
-		prev = 0
-		bkwd()
+		down()
+		position += 1
+                print 'down'
 
+#player died; time to reset
 setpins(step,[])
+time.sleep(1)
+
+#go all the way back up
+while position>0:
+	fwd()
+	position -= 1
+
+#deactivate pins to save the power supply and h-bridge
+setpins(step,[])
+
