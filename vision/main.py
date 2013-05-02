@@ -1,6 +1,8 @@
 from SimpleCV import *
 import numpy
 
+props = {"width":480,"height":360}
+
 def colorDistance(color1,color2):
     return ((color2[0]-color1[0])**2+(color2[1]-color1[1])**2+(color2[2]-color1[2])**2)
 
@@ -9,13 +11,15 @@ def colorDistance(color1,color2):
 # this should be called when starting or resetting the program 
 def initialize(source=0):
     count = 0
+    cam = Camera(0,prop_set=props)
     while (1):
         if source:
             #testing mode
             i = Image("cv1.png")
         else:
-            cam = Camera(1)
             i = cam.getImage()
+            #i.show()
+            #raw_input()
         layer = DrawingLayer(i.size())
         i.addDrawingLayer(layer)
         inverted = i.hueDistance(color=Color.WHITE,minsaturation=75,minvalue=100).binarize()
@@ -23,13 +27,14 @@ def initialize(source=0):
         squares = []
         if blobs:
             for blob in blobs:
-                if blob.isSquare(.2,.2):
+                if blob.isSquare(.15,.15):
                     area = blob.minRectWidth()*blob.minRectHeight()
-                    if area>1000:
+                    if area>200:
                         squares.append(blob)
                         blob.draw(color=Color.GREEN,width=-1,layer=layer)
         #i.show()
-
+        #raw_input()
+        print 'done'
         # wait until we see 4 squares for 3 frames in a row
         if len(squares) == 4:
             count += 1
@@ -103,18 +108,21 @@ def getReading(ws,source=0):
     if source:
         #testing mode
         i = Image("cv4.png")
+        #i = i.scale(0.5)
     else:
-        cam = Camera(1)
+        cam = Camera(0,prop_set=props)
         i = cam.getImage()
 
     i = i.crop(ws[0],ws[1],ws[2],ws[3]) #only use the workspace
-
+    #i = i.scale(.5)
     edgetest = i.edges(20,40).binarize()
-    matrix = edgetest.getNumpy()[:,:,0]
-
-    for item in numpy.nditer(matrix,op_flags=['readwrite']):
-        if item == 0:
-            item[...] = 1
-        else:
-            item[...] = 0
+    
+    matrix = edgetest.invert().getNumpy()[:,:,0]
     return matrix
+    
+
+
+ws = initialize()
+for i in range(5):
+    img=getReading(ws,1)
+    img.save(filehandle_or_filename=str(i))
