@@ -92,11 +92,16 @@
         <div class="row-fluid marketing">
           <div class="span8">
             <h2>Game Engine</h2>
-            <p>The game engine subsystem is writen in Python using the the TKInter graphics library.  We chose to use Python and TKInter to facilitate rapid iteration and incremental development.  The game engine defines the environment for the game and facilitates user input.</p>
 
-            <p>To make sure we had a demoable prototype and to facilitate testing, the game engine was designed to facilitate both software and mechanical implementations.  For each major component, there exists an abstract class defining methods relevant for both implementations, and both a mechanical and software child class.  Mechanical and software game-player take these objects to manage the system.</p>
+            <p>The game engine subsystem is written in Python using the the TKInter graphics library. We chose to use Python and TKInter to facilitate rapid iteration and incremental development. The game engine defines the environment for the game and facilitates user input.</p>
+            <p>To make sure we had a demoable prototype and to facilitate testing, the game engine was designed to facilitate both software and mechanical implementations. For each major component, there exists an abstract class defining methods relevant for both implementations, and both a mechanical and software child class. Mechanical and software game-player take these objects to manage the system.</p>
+            <p>The software mock-up of the game is completely functional and incorporates all major components we sought to included in the game design-- collision detection, increased speed over time, power-ups and anti-power-ups.  The mechanical implementation of the game engine is also complete; however, due to time constraints and trouble with integration, it has not been largely implemented in our final mechanical product.</p>
 
-            <p>Right now, the mechanical game player is largely unimplemented due to pending integration, but the software implementation is complete.</p>
+            <h2>Process reflection and advice</h2>
+
+            <p>I built the game engine system incrementally.  I started by development general code that could be applied to both the hardware and software systems.  This code included methods defining the basic classes for the world, snail, and power-ups and provided methods to instanciate them.  Next, I built the software mock-up of our physical game. In addition to building on the generic game methods, this code also provided methods to generate a world and continue to build on it dynamically throughout the course of the game.  These components are not necessary in the mechanical implementation, in which the world is provided.  After building the software implementation, I made the mechanical implementation. The mechanical implementation contained methods and interfaces to integrate with the vision and Raspberry Pi systems.   Unfortunately, this system was not fully integrated with the game engine due to time constraints.</p>
+
+            <p>Were I to reimagine my design process, I would have tried to integrate the game engine with other components earlier.  For example, I would have integrated the vision component with the software mock-up rather than waiting until the mechanical system was ready.</p>
           </div>
           <div class="span4">
             <br><br><br>
